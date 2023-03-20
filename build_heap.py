@@ -1,27 +1,28 @@
 #221RDB004
+#python3
 
 def build_heap(data):
-    swap = []
     n = len(data)
+    swap = []
     for i in range(n // 2, -1, -1):
         heap(data, swap, i, n)
     return swap
 
 def heap(data, swap, i, n):
-    lielakais = i
+    min = i
     kreisais = 2 * i + 1
     labais = 2 * i + 2
 
-    if kreisais < n and data[kreisais] > data[lielakais]:
-        lielakais = kreisais
+    if kreisais < n and data[kreisais] < data[min]:
+        min = kreisais
 
-    if labais < n and data[labais] > data[lielakais]:
-        lielakais = labais
+    if labais < n and data[labais] < data[min]:
+        min = labais
 
-    if lielakais != i:
-        swap.append((i, lielakais))
-        data[i], data[lielakais] = data[lielakais], data[i]
-        heap(data, swap, lielakais)
+    if i != min:
+        swap.append((i, min))
+        data[i], data[min] = data[min], data[i]
+        heap(data, swap, min, n)
 
 
 def main():
