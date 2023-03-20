@@ -16,7 +16,7 @@ def heapify(data, swap, i):
     if kreisais < lielums and data[kreisais] > data[lielakais]:
         lielakais = kreisais
 
-    if labais < lielu,s and data[labais] > data[lielakais]:
+    if labais < lielums and data[labais] > data[lielakais]:
         lielakais = labais
 
     if lielakais != i:
