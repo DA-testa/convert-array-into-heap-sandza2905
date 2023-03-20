@@ -2,7 +2,7 @@ def build_heap(data):
     swap = []
     lielums = len(data)
     for i in range(lielums // 2, -1, -1):
-        maz(data, i, swap)
+        heapify(data, i, swap)
     return swap
 
 def heapify(data, swap, i):
