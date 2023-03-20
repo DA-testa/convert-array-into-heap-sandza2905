@@ -4,7 +4,7 @@ def build_heap(data):
     swap = []
     lielums = len(data)
     for i in range(lielums // 2, -1, -1):
-        heapify(data, i, swap)
+        heapify(data, swap, i)
     return swap
 
 def heapify(data, swap, i):
@@ -22,7 +22,7 @@ def heapify(data, swap, i):
     if lielakais != i:
         swap.append((i, lielakais))
         data[i], data[lielakais] = data[lielakais], data[i]
-        heapify(data, lielakais, swap)
+        heapify(data, i, swap)
 
 
 def main():
@@ -39,7 +39,6 @@ def main():
         with open(destination, mode="r") as file:
             n = int(file.readline())
             data = list(map(int, file.readline().split()))
-
     swap = build_heap(data)
     print(len(swap))
     for i,j in swap:
