@@ -26,8 +26,7 @@ def heapify(data, swap, i):
 
 
 def main():
-    input_type = input("I or F: ")
-
+    input_type = input()
     if input_type == "I":
         n = int(input())
         data = list(map(int, input().split()))
