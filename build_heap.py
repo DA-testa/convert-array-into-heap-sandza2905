@@ -4,10 +4,10 @@ def build_heap(data):
     swap = []
     lielums = len(data)
     for i in range(lielums // 2, -1, -1):
-        heapiffy(data, swap, i)
+        heapify(data, swap, i)
     return swap
 
-def heapiffy(data, swap, i):
+def heapify(data, swap, i):
     lielums = len(data)
     lielakais = i
     kreisais = 2 * i + 1
@@ -22,7 +22,7 @@ def heapiffy(data, swap, i):
     if lielakais != i:
         swap.append((i, lielakais))
         data[i], data[lielakais] = data[lielakais], data[i]
-        heapiffy(data, i, swap)
+        heapify(data, lielakais, swap)
 
 
 def main():
