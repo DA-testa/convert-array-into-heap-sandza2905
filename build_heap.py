@@ -33,7 +33,6 @@ def main():
 
     elif input_type == "F":
         test_nr = input().strip()
-        filename = input()
         source = './tests/'
         destination = source + filename
         with open(destination, mode="r") as file:
