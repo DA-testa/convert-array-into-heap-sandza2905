@@ -2,44 +2,47 @@
 
 def build_heap(data):
     swap = []
-    lielums = len(data)
-    for i in range(lielums // 2, -1, -1):
-        heapify(data, swap, i)
+    n = len(data)
+    for i in range(n // 2, -1, -1):
+        heap(data, swap, i, n)
     return swap
 
-def heapify(data, swap, i):
-    lielums = len(data)
+def heap(data, swap, i, n):
     lielakais = i
     kreisais = 2 * i + 1
     labais = 2 * i + 2
 
-    if kreisais < lielums and data[kreisais] > data[lielakais]:
+    if kreisais < n and data[kreisais] > data[lielakais]:
         lielakais = kreisais
 
-    if labais < lielums and data[labais] > data[lielakais]:
+    if labais < n and data[labais] > data[lielakais]:
         lielakais = labais
 
     if lielakais != i:
         swap.append((i, lielakais))
         data[i], data[lielakais] = data[lielakais], data[i]
-        heapify(data, swap, lielakais)
+        heap(data, swap, lielakais)
 
 
 def main():
-    input_type = input()
+    input_type = input().strip()
     if input_type == "I":
         n = int(input())
         data = list(map(int, input().split()))
-        assert len(data) == n
 
     elif input_type == "F":
+        test_nr = input().strip()
         filename = input()
         source = './tests/'
         destination = source + filename
         with open(destination, mode="r") as file:
             n = int(file.readline())
             data = list(map(int, file.readline().split()))
+    else:
+        print("Invalid input type")
+        return
     
+    assert len(data) == n    
     swap = build_heap(data)
     print(len(swap))
     for i,j in swap:
