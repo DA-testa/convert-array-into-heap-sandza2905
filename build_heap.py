@@ -33,11 +33,9 @@ def main():
 
     elif input_type == "F":
         test_nr = input().strip()
-        source = './tests/'
-        destination = source + filename
-        with open(destination, mode="r") as file:
-            n = int(file.readline())
-            data = list(map(int, file.readline().split()))
+        with open(f"tests/{test_nr}", "r") as f:
+            n = int(f.readline())
+            data = list(map(int, f.readline().split()))
     else:
         print("Invalid input type")
         return
