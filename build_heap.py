@@ -37,8 +37,8 @@ def main():
         source = './tests/'
         destination = source + filename
         with open(destination, mode="r") as file:
-            n = int(f.readline())
-            data = list(map(int, f.readline().split()))
+            n = int(file.readline())
+            data = list(map(int, file.readline().split()))
 
     swap = build_heap(data)
     print(len(swap))
