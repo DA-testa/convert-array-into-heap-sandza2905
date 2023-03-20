@@ -1,3 +1,5 @@
+#221RDB004
+
 def build_heap(data):
     swap = []
     lielums = len(data)
@@ -18,6 +20,7 @@ def heapify(data, swap, i):
         lielakais = labais
 
     if lielakais != i:
+        swap.append((i, lielakais))
         data[i], data[lielakais] = data[lielakais], data[i]
         heapify(data, lielakais, swap)
 
@@ -32,7 +35,9 @@ def main():
 
     elif input_type == "F":
         filename = input("File name: ")
-        with open(f"tests/{filename}", "r") as f:
+        source = './tests/'
+        destination = source + filename
+        with open(destination, mode="r") as file:
             n = int(f.readline())
             data = list(map(int, f.readline().split()))
 
