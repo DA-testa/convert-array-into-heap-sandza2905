@@ -1,31 +1,26 @@
-def heap_sort(data):
-    def heapify(data, n, i):
-        lielakais = i
-        kreisais = 2 * i + 1
-        labais = 2 * i + 2
+def build_heap(data):
+    swap = []
+    lielums = len(data)
+    for i in range(lielums // 2, -1, -1):
+        maz(data, i, swap)
+    return swap
 
-        if kreisais < n and data[kreisais] > data[lielakais]:
-            lielakais = kreisais
+def heapify(data, swap, i):
+    lielums = len(data)
+    lielakais = i
+    kreisais = 2 * i + 1
+    labais = 2 * i + 2
 
-        if labais < n and data[labais] > data[lielakais]:
-            lielakais = labais
+    if kreisais < n and data[kreisais] > data[lielakais]:
+        lielakais = kreisais
 
-        if lielakais != i:
-            data[i], data[lielakais] = data[lielakais], data[i]
-            heapify(data, n, lielakais)
+    if labais < n and data[labais] > data[lielakais]:
+        lielakais = labais
 
-    n = len(data)
+    if lielakais != i:
+        data[i], data[lielakais] = data[lielakais], data[i]
+        heapify(data, lielakais, swap)
 
-    
-    for i in range((n // 2) - 1, -1, -1):
-        heapify(data, n, i)
-
-    
-    for i in range(n - 1, 0, -1):
-        data[0], data[i] = data[i], data[0]
-        heapify(data, i, 0)
-
-    return data
 
 def main():
     input_type = input("I or F: ")
@@ -33,6 +28,7 @@ def main():
     if input_type == "I":
         n = int(input())
         data = list(map(int, input().split()))
+        assert len(data) == n
 
     elif input_type == "F":
         filename = input("File name: ")
@@ -40,12 +36,10 @@ def main():
             n = int(f.readline())
             data = list(map(int, f.readline().split()))
 
-    assert len(data) == n
-
-    sorted_data = heap_sort(data)
-
-    for element in sorted_data:
-        print(element)
+    swap = build_heap(data)
+    print(len(swap))
+    for i,j in swap:
+        print(i, j)
 
 if __name__ == "__main__":
     main()
