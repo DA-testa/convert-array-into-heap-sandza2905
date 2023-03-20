@@ -22,7 +22,7 @@ def heapify(data, swap, i):
     if lielakais != i:
         swap.append((i, lielakais))
         data[i], data[lielakais] = data[lielakais], data[i]
-        heapify(data, lielakais, swap)
+        heapify(data, swap, lielakais)
 
 
 def main():
