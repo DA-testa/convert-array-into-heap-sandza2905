@@ -1,39 +1,45 @@
-# python3
-
-
-def build_heap(data):
+def heap_sort(arr):
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
+    n = len(arr)
 
+    def heapify(start, end):
+        smallest = start
+        left = 2 * start + 1
+        right = 2 * start + 2
+
+        if left < end and arr[left] < arr[smallest]:
+            smallest = left
+
+        if right < end and arr[right] < arr[smallest]:
+            smallest = right
+
+        if smallest != start:
+            swaps.append((start, smallest))
+            arr[start], arr[smallest] = arr[smallest], arr[start]
+            heapify(smallest, end)
+
+    for i in range((n // 2) - 1, -1, -1):
+        heapify(i, n)
 
     return swaps
 
 
 def main():
-    
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
+    input_type = input("Enter 'I' for input or 'F' for file: ")
 
+    if input_type == "I":
+        n = int(input("Enter the number of elements: "))
+        arr = list(map(int, input("Enter space-separated integers: ").split()))
+    elif input_type == "F":
+        filename = input("Enter the filename: ")
+        with open(f"tests/{filename}", "r") as f:
+            n = int(f.readline())
+            arr = list(map(int, f.readline().split()))
 
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
+    assert len(arr) == n
+    swaps = heap_sort(arr)
 
-    # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
-
-    # calls function to assess the data 
-    # and give back all swaps
-    swaps = build_heap(data)
-
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-
-
-    # output all swaps
-    print(len(swaps))
+    print("Number of swaps:", len(swaps))
     for i, j in swaps:
         print(i, j)
 
