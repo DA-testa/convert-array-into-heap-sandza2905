@@ -33,7 +33,7 @@ def main():
         assert len(data) == n
 
     elif input_type == "F":
-        filename = input("File name: ")
+        filename = input()
         source = './tests/'
         destination = source + filename
         with open(destination, mode="r") as file:
