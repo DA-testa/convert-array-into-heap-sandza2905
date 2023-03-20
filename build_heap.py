@@ -39,6 +39,11 @@ def main():
         with open(destination, mode="r") as file:
             n = int(file.readline())
             data = list(map(int, file.readline().split()))
+            
+     else:
+        print("Invalid input type")
+        return
+    
     swap = build_heap(data)
     print(len(swap))
     for i,j in swap:
